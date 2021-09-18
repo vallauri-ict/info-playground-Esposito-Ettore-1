@@ -1,0 +1,8 @@
+E:\informatica\5 superiore\informatica\info playground\01_01_Sql\01_01_Sql\bin\Debug\01_01_Sql.exe.config
+E:\informatica\5 superiore\informatica\info playground\01_01_Sql\01_01_Sql\bin\Debug\01_01_Sql.exe
+E:\informatica\5 superiore\informatica\info playground\01_01_Sql\01_01_Sql\bin\Debug\01_01_Sql.pdb
+E:\informatica\5 superiore\informatica\info playground\01_01_Sql\01_01_Sql\obj\Debug\01_01_Sql.csprojAssemblyReference.cache
+E:\informatica\5 superiore\informatica\info playground\01_01_Sql\01_01_Sql\obj\Debug\_01_01_Sql.Properties.Resources.resources
+E:\informatica\5 superiore\informatica\info playground\01_01_Sql\01_01_Sql\obj\Debug\01_01_Sql.csproj.GenerateResource.cache
+E:\informatica\5 superiore\informatica\info playground\01_01_Sql\01_01_Sql\obj\Debug\01_01_Sql.exe
+E:\informatica\5 superiore\informatica\info playground\01_01_Sql\01_01_Sql\obj\Debug\01_01_Sql.pdb
