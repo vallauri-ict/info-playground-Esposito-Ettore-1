@@ -1,0 +1,6 @@
+C:\Users\e.esposito.1520\Desktop\espo\info-playground-Esposito-Ettore-1\Esposito_Ettore\Esposito_Ettore\bin\Debug\Esposito_Ettore.exe.config
+C:\Users\e.esposito.1520\Desktop\espo\info-playground-Esposito-Ettore-1\Esposito_Ettore\Esposito_Ettore\bin\Debug\Esposito_Ettore.exe
+C:\Users\e.esposito.1520\Desktop\espo\info-playground-Esposito-Ettore-1\Esposito_Ettore\Esposito_Ettore\bin\Debug\Esposito_Ettore.pdb
+C:\Users\e.esposito.1520\Desktop\espo\info-playground-Esposito-Ettore-1\Esposito_Ettore\Esposito_Ettore\obj\Debug\Esposito_Ettore.csprojAssemblyReference.cache
+C:\Users\e.esposito.1520\Desktop\espo\info-playground-Esposito-Ettore-1\Esposito_Ettore\Esposito_Ettore\obj\Debug\Esposito_Ettore.exe
+C:\Users\e.esposito.1520\Desktop\espo\info-playground-Esposito-Ettore-1\Esposito_Ettore\Esposito_Ettore\obj\Debug\Esposito_Ettore.pdb
