@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _01_13_EsercizioStoredProcedure2
 {
     public partial class FormFiliali : Form
     {
-        const string CONSTR = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"S:\\informatica\\5 superiore\\informatica\\info playground\\01_13_EsercizioStoredProcedure2\\Banche.mdf\";Integrated Security=True;Connect Timeout=30";
+        const string CONSTR = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"E:\\informatica\\5 superiore\\informatica\\info playground\\01_13_EsercizioStoredProcedure2\\Banche.mdf\";Integrated Security=True;Connect Timeout=30";
 
         public FormFiliali()
         {
@@ -36,7 +30,7 @@ namespace _01_13_EsercizioStoredProcedure2
                 return;
             }
 
-            DataTable tot = GetStorico("EXEC Conta '" + nomeBanca + "', '" + comuneFiliale + "';");
+            DataTable tot = GetTotale("EXEC Conta '" + nomeBanca + "', '" + comuneFiliale + "';");
             if (tot.Rows.Count == 0)
             {
                 MessageBox.Show("La banca non ha filiali in quel comune");
@@ -49,28 +43,16 @@ namespace _01_13_EsercizioStoredProcedure2
 
         private void btnVedi_Click(object sender, EventArgs e)
         {
-            string nomeBanca = txtBanca.Text;
-
-            if (nomeBanca == "")
+            if (txtBanca.Text == "")
             {
                 MessageBox.Show("Metti il nome della banca");
                 return;
             }
 
-            DataTable filiali = GetStorico("EXEC VediFiliali '" + nomeBanca + "';");
-            if (filiali.Rows.Count == 0)
-            {
-                MessageBox.Show("La banca non ha filiali");
-                return;
-            }
-
-            string ris = "";
-            foreach (DataRow row in filiali.Rows)
-                ris += "\n - Id: " + row.Field<int>("Id") + ", Comune " + row.Field<string>("Citta") + ", numero: " + row.Field<int>("Numero");
-            MessageBox.Show("Eleco filiali:" + ris);
+            VediFiliali();
         }
 
-        private DataTable GetStorico(string query)
+        private DataTable GetTotale(string query)
         {
             using (SqlConnection con = new SqlConnection(CONSTR))
             using (SqlCommand cmd = new SqlCommand(query, con))
@@ -82,6 +64,50 @@ namespace _01_13_EsercizioStoredProcedure2
                 con.Close();
 
                 return data;
+            }
+        }
+
+        private void VediFiliali()
+        {
+            using (SqlConnection con = new SqlConnection(CONSTR))
+            {
+                string sql = "VediFiliali";
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                SqlParameter nomeBanca = new SqlParameter();
+                nomeBanca.ParameterName = "banca";
+                nomeBanca.Direction = ParameterDirection.Input;
+                nomeBanca.DbType = DbType.String;  // Tipo di dato nella S.P.
+                nomeBanca.Size = 50;               // Dimensione del dato in caso di stringhe
+                nomeBanca.Value = txtBanca.Text;
+                cmd.Parameters.Add(nomeBanca);
+
+                SqlParameter totale = new SqlParameter();
+                totale.ParameterName = "totale";
+                totale.Direction = ParameterDirection.Output;
+                totale.DbType = DbType.Int32;
+                cmd.Parameters.Add(totale);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader ris = cmd.ExecuteReader();
+
+                if (!ris.HasRows)
+                {
+                    MessageBox.Show("La banca non ha filiali");
+                    return;
+                }
+
+                string output = "";
+                while (ris.Read())
+                    output += "\n - Id: " + ris.GetInt32(0) + ", Comune " + ris.GetString(1) + ", numero: " + ris.GetInt32(2);
+                ris.Close();
+                MessageBox.Show("Eleco filiali (totale: " + totale.Value + "):" + output);
+
+                con.Close();
             }
         }
     }
